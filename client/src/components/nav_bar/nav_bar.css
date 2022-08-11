@@ -1,0 +1,19 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(255, 194, 81);
+}
+span{
+
+}
+
+.logo{
+    align-content: center;
+    height: 20px
+}
+
+.buttons{
+    text-decoration: none;
+    color: black;
+}

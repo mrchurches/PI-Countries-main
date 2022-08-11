@@ -1,0 +1,35 @@
+.landing{
+    display: flex;
+    flex-direction: column;
+    background-image: url("../../images/world-landing.jpg");
+    width: 100%;
+    height: 100vh;;
+    background-size: cover;
+    background-position: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.title{
+    font-size: 30px;
+    color: rgb(255, 194, 81);
+}
+
+.link{
+    display: flex;
+    text-decoration: none;
+    padding: 0.3rem;
+    border-radius: 3rem;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: -0.5rem -0.5rem 1rem black;
+    transition: all 0.5s;
+}
+.link h4 {
+    color: rgb(255, 194, 81);
+    font-size: 1rem;
+    text-shadow: 0 0 1rem black;
+  }
+  
+  .link:hover {
+    transform: scale(0.95);
+  }
