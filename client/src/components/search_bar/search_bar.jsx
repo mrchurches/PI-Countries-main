@@ -1,12 +1,12 @@
 import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { clearFiltered, getCountry } from "../../redux/actions";
 
 export default function SearchBar(){
     let [name, setName] = useState("");
     let dispatch = useDispatch();
-    let filteredCountries = useSelector(state=> state.filteredCountries);
     function handleChange(e){
+        e.preventDefault();
         setName(e.target.value)
     }
     function handleSubmit(e){
@@ -15,6 +15,7 @@ export default function SearchBar(){
         setName("")
     }
     function handleClick(e){
+        e.preventDefault();
         dispatch(clearFiltered())
     }
 

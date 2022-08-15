@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { postActivity } from "../../redux/actions";
 import validator from "./validator";
@@ -6,8 +7,8 @@ import validator from "./validator";
 export default function Creator(){
     let countries = useSelector((state)=> state.countries);
     const dispatch = useDispatch();
-    const [selected, setSelected] = useState([]);
-    const [error, setError] = useState({});
+    const history = useHistory();
+    const [errors, setErrors] = useState({});
     const [input,setInput] = useState({
         name: "",
         difficulty: "",
@@ -19,48 +20,62 @@ export default function Creator(){
     function handleSubmit (e){
             e.preventDefault()
             dispatch(postActivity(input))
+            setInput({
+                name: "",
+                difficulty: "",
+                duration: "",
+                season: "",
+                countries: []
+            });
+            history.push("/home")
             console.log(input)
     };
 
     function handleChange (e){
         setInput({...input , [e.target.name]: e.target.value})
-        setError(validator(e, input))
-        console.log(error)
+        setErrors(validator({...input, [e.target.name]:e.target.value}))
     };
 
     function handleCountry(e){
-
+        e.preventDefault()
         if(!input.countries.includes(e.target.value)){
             setInput({
                 ...input,
                 countries: [...input.countries, e.target.value]
             });
-            setSelected([...selected, e.target.value])
+            setErrors(validator({...input, [e.target.name]:e.target.value}))
         }
     }
+
     return(
         <div>
             Create a new activity:
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e)=> handleSubmit(e)}>
+            
             <label>Name: </label>
-                <input onChange={handleChange} value={input.name} type="text" name='name' /><br/>
-                {error.name && <h4>{error.name}</h4>}
+                <input onChange={(e)=> handleChange(e)} value={input.name} type="text" name='name' /><br/>
+                {errors.name && <h4>{errors.name}</h4>}
+            
             <label>Difficulty: </label>
-                <input onChange={handleChange} value={input.difficulty} type="number" name="difficulty" min={1} max={5}/><br/>
-                {error.difficulty && <h4>{error.difficulty}</h4>}
+                <input onChange={(e)=> handleChange(e)} value={input.difficulty} type="number" name="difficulty" min={1} max={5}/><br/>
+                {errors.difficulty && <h4>{errors.difficulty}</h4>}
+            
             <label>Duration: </label>
-            <   input onChange={handleChange} value={input.duration} type="text" name='duration' /><br/>
+                <input onChange={(e)=> handleChange(e)} value={input.duration} type="text" name='duration' /><br/>
+                {errors.duration && <h4>{errors.duration}</h4>}
+            
             <label>Season: </label>
-                <select onChange={handleChange} value={input.season} name="season">
+                <select onChange={(e)=> handleChange(e)} value={input.season} name="season">
                     <option>Season</option>
                     <option value="autumn">Autumn</option>
                     <option value="winter">Winter</option>
                     <option value="spring">Spring</option>
                     <option value="summer">Summer</option>
                 </select><br/>
-                {error.season && <h4>{error.season}</h4>}
+                {errors.season && <h4>{errors.season}</h4>}
+            
             <label>Add countries for the activity</label>
-            <select value={selected} onChange={handleCountry} name="countries">
+            <select multiple={true} value={input.countries} onChange={(e)=> handleCountry(e)} name="countries">
                 <option >Seleccionar</option>
                 {   countries?
                     countries.map(e=>{
@@ -70,24 +85,19 @@ export default function Creator(){
                     }): <h4>loading....</h4>
                 }
             </select>
-            {error.countries && <h4>{error.countries}</h4>}
-            <br/>
+            {errors.countries && <h4>{errors.countries}</h4>}
+           
+
             {
-                error.name || error.difficulty || error. duration || error.season || error.countries ?
+                errors.name || errors.difficulty || errors.duration || errors.season || errors.countries?
                 <button disabled={true} type= "submit">Create</button> :
                 <button  type= "submit">Create</button>
             }
-            </form>
-            {
-                selected? selected.map(e=>{
-                    return(
-                        <div>
-                            <h4 key={e}>{e}</h4>
-                        </div>
-                    )
-                }) : <h4>Loading...</h4>
-            }
 
+            </form>
+
+                {input.countries.length? <span>Selected countries</span>: ""}
+                <ul><li>{input.countries.map(e=> e + " ")}</li></ul>
         </div>
     )
 }

@@ -24,7 +24,7 @@ export default function NavBar(){
                 </Link>
             </div>
             <div>
-            {location.pathname == '/home' && <SearchBar />}   
+            {location.pathname === '/home' && <SearchBar />}   
             </div>
         </div>
     )

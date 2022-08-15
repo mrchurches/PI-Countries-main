@@ -1,0 +1,6 @@
+.cards{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: rgb(172, 122, 65);
+}

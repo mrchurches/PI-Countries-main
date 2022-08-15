@@ -1,25 +1,24 @@
-const validator = (e, input) => {
-    let {name, difficulty, duration, season, countries} = input;
-    let error = {};
-    switch(e.target.name){
-        case "name":
-            error.name = name.length<1 ? "Name must be longer than 1": "";
-            break;
-        case "difficulty":
-            error.difficulty = difficulty<1 || difficulty>5 ? "Entre 1 y 5" : "";
-            break;
-        case "duration":
-            error.duration = "";
-        case "season":
-            error.season = season === "autumn" || season === "winter" || season === "spring" || season === "summer" ? "" : "Wrong season";
-            break;
-        case "countries":
-            error.countries = countries.length? "" : "";
-            break;
-        default:
-            break;
+let validator = (input) => {
+
+    let errors = {};
+console.log(input)
+    if(input.name.length< 2 || input.name.length> 20){
+        errors.name = "error";
     }
-    return error
+    if(input.difficulty<1 || input.difficulty>5){
+        errors.difficulty = "valor entre 1 y 5"
+    }
+    if(input.duration.length > 25){
+        errors.duration="max char 25"
+    }
+    if(!input.season){
+        errors.season = "Wrong season or empty"
+    }
+    if(!input.countries.length){
+        errors.countries = "Must have min 1 country"
+    }
+
+    return errors;
 }
 
 export default validator;

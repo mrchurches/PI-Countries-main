@@ -1,0 +1,15 @@
+.pages{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+
+.pages li{
+    cursor: pointer;
+    padding: 5px;
+}
+
+
+.pages li:hover{
+    background-color: aquamarine;
+}

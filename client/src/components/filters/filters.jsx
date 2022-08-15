@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filter, getActivities, getAllCountries } from "../../redux/actions";
 
@@ -17,7 +17,7 @@ const regions = ()=>{
 
 useEffect(()=>{
     dispatch(getActivities())
-},[])    
+},[dispatch])    
 
 function handleChange(e){
        // console.log(e.target.name)
@@ -72,7 +72,7 @@ dispatch(getActivities(e.target.value))}
                                     return(
                                         <div>
                                             <h4>{e.name}</h4>
-                                            <h4></h4>
+                                            
                                         </div>
                                     )
                                 })}

@@ -1,8 +1,16 @@
 .card{
-    display: inline;
-    /* width: 20%;
-    padding: 0.3%;
-    margin: 1%;
-    background-color: aliceblue;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); */
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    padding: 2rem;
+    border: 10px;
+    margin: 1rem;
+    width: 20rem;
+    height: 20rem;
+    border: 5px solid white;
+    background: rgb(156, 156, 156);
+}
+
+.card:hover{
+    box-shadow: 1rem 0.1rem 5rem rgba(0, 0, 0, 0.19), 0 50px 50px rgba(0,0,0,0.23);
 }

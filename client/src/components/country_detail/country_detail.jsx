@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
 export default function CountryDetail(){
-    const [countries, setCountries] = useState(null);
+    const [countries, setCountries] = useState("");
     let {id} = useParams();
+
     useEffect(()=>{
         axios.get(`http://localhost:3001/api/countries/${id}`)
         .then((res)=>setCountries(res.data))
-    },[])
+    },[id])
 
     return(
             <div>
