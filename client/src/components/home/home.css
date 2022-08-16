@@ -1,3 +1,9 @@
 .Home{
-background-color: rgb(255, 225, 168);
+background-color: rgb(104, 104, 104);
+font-family: 'Jost', sans-serif;
+}
+
+.show{
+    margin: 0.3rem;
+    padding: 0.2rem;
 }

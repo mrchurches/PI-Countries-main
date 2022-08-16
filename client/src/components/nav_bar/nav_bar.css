@@ -1,11 +1,17 @@
 .navbar{
     display: flex;
     justify-content: space-between;
+    font-family: 'Jost', sans-serif;
     align-items: center;
-    background: rgb(255, 194, 81);
+    background: rgb(80, 80, 80);
 }
-span{
-
+.first{
+    margin: 5px;
+}
+.first span{
+    position: relative;
+    bottom: 3px;
+    margin: 4px;
 }
 
 .logo{
@@ -15,5 +21,15 @@ span{
 
 .buttons{
     text-decoration: none;
-    color: black;
+    color: white;
+    transition: all 0.5s;
+}
+
+.buttons:hover{
+    text-shadow: black 0.1em 0.1em 0.1em;
+}
+
+.div:hover{
+    transition: all 0.5s;
+    border: black solid 3px;
 }

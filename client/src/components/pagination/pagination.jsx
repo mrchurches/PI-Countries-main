@@ -1,6 +1,7 @@
 import React from "react";
-import "../pages/pages.css"
-export default function Pages({countriesPerPage, countries, paginado}){
+import "./pagination.css"
+
+export default function Pagination({countriesPerPage, countries, paginado, currentPage}){
     const pageNums = [];
     
     for(let i=1; i<= Math.ceil(countries/countriesPerPage); i++){
@@ -12,7 +13,7 @@ export default function Pages({countriesPerPage, countries, paginado}){
             <ul className="pages">
                 {
                     pageNums && pageNums.map(e=>{return(
-                        <li key={e}>
+                        <li key={e} className={currentPage === e ? "actual" : "non"}>
                             <span onClick={()=> paginado(e)}>{e}</span>
                         </li>
                     )})

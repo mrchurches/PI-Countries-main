@@ -8,9 +8,23 @@
     width: 20rem;
     height: 20rem;
     border: 5px solid white;
-    background: rgb(156, 156, 156);
+    background: rgb(110, 109, 109);
+    transition: all 0.5s;
 }
-
+.card link{
+    text-decoration: none;
+}
+.card h1{
+    color: black;
+}
+.card h3{
+    color: black;
+}
+.card img{
+    justify-items: center;
+    width: 20rem;
+}
 .card:hover{
-    box-shadow: 1rem 0.1rem 5rem rgba(0, 0, 0, 0.19), 0 50px 50px rgba(0,0,0,0.23);
+    transform: scale(0.95);
+    box-shadow: 0.5rem 0.5rem 0.8rem black;
 }

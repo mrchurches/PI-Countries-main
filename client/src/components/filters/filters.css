@@ -1,0 +1,10 @@
+.filters{
+display: flex;
+justify-content: center;
+background-color: rgb(97, 97, 97);
+padding: 0.5rem;
+}
+
+.select{
+    margin: 0.1rem;
+}

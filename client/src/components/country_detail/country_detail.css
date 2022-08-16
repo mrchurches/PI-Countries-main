@@ -1,0 +1,21 @@
+.cont{
+    font-family: 'Jost', sans-serif;
+}
+.cont h1{
+    font-size: 8rem;
+}
+.detail{
+    display: flex;
+    justify-content:space-around;
+    font-size: 1.5rem;
+}
+
+.image{
+    margin: 1rem;
+    padding: 0.5rem;
+}
+
+.image img{
+    height: 20rem;
+    width: auto;
+}

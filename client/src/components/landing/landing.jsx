@@ -3,9 +3,9 @@ import "./landing.css"
 export default function Landing(){
     return(
         <div className="landing">
-            <h1 className="title">Welcome to the countries page</h1>
+            <h1>The countries page</h1>
             <Link to="/home" className="link">
-                <h4>Let's go</h4>
+                <h4>Enter</h4>
             </Link>
         </div>
     )

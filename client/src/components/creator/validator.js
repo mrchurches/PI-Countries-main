@@ -8,8 +8,8 @@ console.log(input)
     if(input.difficulty<1 || input.difficulty>5){
         errors.difficulty = "valor entre 1 y 5"
     }
-    if(input.duration.length > 25){
-        errors.duration="max char 25"
+    if(input.duration.length > 25 || input.duration.length<3){
+        errors.duration="min char 3 and max char 25"
     }
     if(!input.season){
         errors.season = "Wrong season or empty"

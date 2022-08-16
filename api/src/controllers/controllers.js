@@ -8,8 +8,8 @@ let getCountriesApi = async () => {
     countries = countries.data.map(e=>{
         return{
             id: e.cca3,
-            name: e.name.common.toLowerCase(),
-            image: e.flags[1],
+            name: e.name.common,
+            image: e.flags[0],
             region: e.region,
             capital: e.capital? e.capital[0]: "no data",
             subregion: e.subregion? e.subregion : "no data",
@@ -67,6 +67,35 @@ let postActivity = async (name, difficulty, duration, season, countries) => {
     await newAct.addCountry(countriesFind);
     return newAct
 }
+
+let modAct = async (id, countries)=>{
+try{
+let act = await Activity.findByPk(id,{
+    include: [Country] 
+});
+let countriesFind = await Country.findAll({
+    where: {
+        name: countries
+    }
+});
+await act.addCountry(countriesFind);
+
+return act;
+}catch(err){
+    console.log(err)
+}
+}
+
+// let delFromAct = async(id,countries)=>{
+// try{
+//     let act = await Activity.findByPk(id,{
+//         include: [Country] 
+//     });
+
+// }catch(e){
+//     console.log(e)
+// }
+// }
 
 let nameAsc = async () => {
 try{
@@ -143,6 +172,7 @@ module.exports = {
     getCountriesDb,
     getCountry,
     postActivity,
+    modAct,
     nameAsc,
     nameDesc,
     regions,

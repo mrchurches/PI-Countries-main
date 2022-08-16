@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { filter, getActivities, getAllCountries } from "../../redux/actions";
+import "./filters.css"
 
 export default function Filters(){
 let dispatch = useDispatch();
@@ -12,15 +13,14 @@ const regions = ()=>{
     let regions = list.filter((e,index)=> list.indexOf(e) === index)
     return regions;
 }
-// countries.map(e=> e.region);
-// regions = regions.filter((e, index)=>regions.indexOf(e) === index);
 
 useEffect(()=>{
     dispatch(getActivities())
 },[dispatch])    
 
+
 function handleChange(e){
-       // console.log(e.target.name)
+    
         if(e.target.name === "activity"){
             if(e.target.value === "default") dispatch(getAllCountries());
             else{
@@ -33,33 +33,41 @@ dispatch(getActivities(e.target.value))}
     }
 
     return(
-        <div>
-            <select name="orden" onChange={handleChange}>
-                <option value="default">select</option>
-                <option value="az">A-Z</option>
-                <option value="za">Z-A</option>
-            </select>
-            <select name="continent" onChange={handleChange}>
-                <option value="default">Region</option>
-                {regions().map(e=>{
-                    return(
-                    <option key={e} value={e} >{e}</option>
-                    )
-                })}
-            </select>
-            <select name="activity" onChange={handleChange}>
-                <option value="empty">Activities</option>
-                {activities?.map(e=>{
-                    return(
-                        <option value={e.name} >{e.name}</option>
-                    )
-                })}
-            </select>
-            <select name="population" onChange={handleChange}>
-                <option value="default">Population</option>
-                <option value="DESC">Max</option>
-                <option value="ASC">Min</option>
-            </select>
+        <div className="filters">
+            <div className="select">
+                <select name="orden" onChange={handleChange}>
+                    <option value="default">select</option>
+                    <option value="az">A-Z</option>
+                    <option value="za">Z-A</option>
+                </select>    
+            </div>
+            <div className="select">
+                <select name="continent" onChange={handleChange}>
+                    <option value="default">Region</option>
+                    {regions().map(e=>{
+                        return(
+                        <option key={e} value={e} >{e}</option>
+                        )
+                    })}
+                </select>
+            </div>
+            <div className="select">
+                <select name="activity" onChange={handleChange}>
+                    <option value="empty">Activities</option>
+                    {activities?.map(e=>{
+                        return(
+                            <option value={e.name} >{e.name}</option>
+                        )
+                    })}
+                </select>
+            </div>
+            <div className="select">
+                <select name="population" onChange={handleChange}>
+                    <option value="default">Population</option>
+                    <option value="DESC">Max</option>
+                    <option value="ASC">Min</option>
+                </select>
+            </div>
                 {
                     activity && activity.map(e=>{
                         return(

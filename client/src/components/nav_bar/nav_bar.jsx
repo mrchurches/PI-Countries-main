@@ -10,20 +10,20 @@ export default function NavBar(){
             <div className="first">
                 <Link className="buttons" to="/">
                 <img src={logo} alt="world" className="logo"/>
-                <span>PI-Countries</span>
+                <span>The countries page</span>
                 </Link>
             </div>
-            <div>
+            <div className="div">
                 <Link className="buttons" to="/home">
                     <div>Home</div>
                 </Link>
             </div>
-            <div>
+            <div className="div">
                 <Link className="buttons" to="/country/create">
-                    <div>Go create a activity</div>
+                    <div>Create activity</div>
                 </Link>
             </div>
-            <div>
+            <div >
             {location.pathname === '/home' && <SearchBar />}   
             </div>
         </div>

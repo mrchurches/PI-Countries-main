@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { postActivity } from "../../redux/actions";
 import validator from "./validator";
+import "./creator.css";
 
 export default function Creator(){
     let countries = useSelector((state)=> state.countries);
@@ -47,36 +48,44 @@ export default function Creator(){
         }
     }
 
+    function handleDelete(e){
+        setInput({
+            ...input,
+            countries: input.countries.filter(c=> c !== e.target.name)
+        })
+    }
+
     return(
-        <div>
-            Create a new activity:
+        <div className="creator">
+            <h1>Create a new activity</h1>
             <form onSubmit={(e)=> handleSubmit(e)}>
             
             <label>Name: </label>
-                <input onChange={(e)=> handleChange(e)} value={input.name} type="text" name='name' /><br/>
-                {errors.name && <h4>{errors.name}</h4>}
+                <input onChange={(e)=> handleChange(e)} value={input.name} type="text" name='name' />
+                {errors.name && <span> {errors.name}</span>}
+                <br/>
             
             <label>Difficulty: </label>
-                <input onChange={(e)=> handleChange(e)} value={input.difficulty} type="number" name="difficulty" min={1} max={5}/><br/>
-                {errors.difficulty && <h4>{errors.difficulty}</h4>}
-            
+                <input onChange={(e)=> handleChange(e)} value={input.difficulty} type="number" name="difficulty" min={1} max={5}/>
+                {errors.difficulty && <span> {errors.difficulty}</span>}
+                <br/>
             <label>Duration: </label>
-                <input onChange={(e)=> handleChange(e)} value={input.duration} type="text" name='duration' /><br/>
-                {errors.duration && <h4>{errors.duration}</h4>}
-            
+                <input onChange={(e)=> handleChange(e)} value={input.duration} type="text" name='duration' />
+                {errors.duration && <span> {errors.duration}</span>}
+                <br/>
             <label>Season: </label>
                 <select onChange={(e)=> handleChange(e)} value={input.season} name="season">
-                    <option>Season</option>
+                    <option value="">Season</option>
                     <option value="autumn">Autumn</option>
                     <option value="winter">Winter</option>
                     <option value="spring">Spring</option>
                     <option value="summer">Summer</option>
-                </select><br/>
-                {errors.season && <h4>{errors.season}</h4>}
-            
+                </select>
+                {errors.season && <span> {errors.season}</span>}
+                <br/>
             <label>Add countries for the activity</label>
             <select multiple={true} value={input.countries} onChange={(e)=> handleCountry(e)} name="countries">
-                <option >Seleccionar</option>
+                <option value="">Seleccionar</option>
                 {   countries?
                     countries.map(e=>{
                         return(
@@ -85,7 +94,7 @@ export default function Creator(){
                     }): <h4>loading....</h4>
                 }
             </select>
-            {errors.countries && <h4>{errors.countries}</h4>}
+            {errors.countries && <h4> {errors.countries}</h4>}
            
 
             {
@@ -96,8 +105,16 @@ export default function Creator(){
 
             </form>
 
-                {input.countries.length? <span>Selected countries</span>: ""}
-                <ul><li>{input.countries.map(e=> e + " ")}</li></ul>
+                {input.countries.length > 0&& (
+                    <div>
+                <span>Selected countries</span>
+                <br/>
+                {input.countries.map(e=> <button onClick={handleDelete} name={e}>{e}</button>)}
+                <h4>Click on the country to delete</h4>
+                </div>
+                )}
+                
+                
         </div>
     )
 }

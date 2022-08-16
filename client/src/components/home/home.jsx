@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { getAllCountries} from "../../redux/actions.js";
 import Cards from "../cards/cards.jsx";
 import Filters from "../filters/filters.jsx";
-import Pages from "../pages/pages.jsx"
+import Pagination from "../pagination/pagination.jsx"
 import "./home.css";
 
 export default function Home(){
@@ -11,10 +11,13 @@ export default function Home(){
     let countries = useSelector((state)=> state.countries);
     let dispatch = useDispatch();
     let [currentPage, setCurrentPage] = useState(1);
-    let [countriesPerPage, setCountriesPerPage] = useState(10);
+    let [countriesPerPage, setCountriesPerPage] = useState(9);
     const indexOfLastCountry = currentPage * countriesPerPage;
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+    // const indexOfLastCountry = currentPage * (currentPage===1?countriesPerPage-1:countriesPerPage);
+    // const indexOfFirstCountry = indexOfLastCountry - (currentPage===1?countriesPerPage-1:countriesPerPage);
     const currentCountries = countries.slice(indexOfFirstCountry, indexOfLastCountry);
+    const [show, setShow] = useState(false);
 
     const paginado = (number) => {
         setCurrentPage(number)
@@ -24,10 +27,12 @@ export default function Home(){
         dispatch(getAllCountries())
     },[dispatch]);
 
+
     return(
         <div className="Home">
-            <Filters />
-            <Pages countriesPerPage={countriesPerPage} countries={countries.length} paginado={paginado}/>
+            <button className="show" onClick={()=> setShow(show => !show)}>{show?"Hide filters":"Show filters"}</button>
+            {show&&<Filters />}
+            <Pagination currentPage={currentPage} countriesPerPage={countriesPerPage} countries={countries.length} paginado={paginado}/>
             <Cards 
                     allCountries = {filteredCountries.length?filteredCountries:currentCountries}
                 />

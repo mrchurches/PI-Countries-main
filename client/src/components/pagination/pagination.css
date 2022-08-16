@@ -11,5 +11,13 @@
 
 
 .pages li:hover{
-    background-color: aquamarine;
+    background-color: rgb(148, 148, 148);
+}
+
+.actual{
+    background-color: black;
+    color: white;
+}
+.non{
+    background-color: aliceblue;
 }
