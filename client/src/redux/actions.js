@@ -10,11 +10,6 @@ export function getAllCountries(){
     return function(dispatch){
         axios.get("http://localhost:3001/api/countries")
         .then((res)=>{
-            // res.data.sort((a,b)=>{
-            //     if(a.name.toLowerCase() < b.name.toLowerCase())return -1;
-            //     if(a.name.toLowerCase() > b.name.toLowerCase())return +1;
-            //     return 0
-            // })
             dispatch({
                 type: GET_ALL_COUNTRIES,
                 payload: res.data
@@ -57,7 +52,7 @@ export function getActivities(name){
             .then(response=>{
                 dispatch({
                     type: GET_ACTIVITY,
-                    payload: response.data
+                    payload: response.data[0].countries
                 })
             })
         }

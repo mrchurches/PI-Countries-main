@@ -7,7 +7,7 @@ const {Country, Activity} = require("../db")
 router.get("/:id",async (req,res,next)=>{
     let {id} = req.params;
     try{
-        if(!id) res.send("no id");
+        if(!id) res.status(500).send("no id");
         id = id.toUpperCase();
         let country = await getCountry(id);
         res.json(country);

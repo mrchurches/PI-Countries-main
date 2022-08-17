@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { postActivity } from "../../redux/actions";
 import validator from "./validator";
+import gif from "../../images/act.gif";
 import "./creator.css";
 
 export default function Creator(){
@@ -19,7 +20,7 @@ export default function Creator(){
     });
 
     function handleSubmit (e){
-            e.preventDefault()
+        try{    e.preventDefault()
             dispatch(postActivity(input))
             setInput({
                 name: "",
@@ -30,6 +31,9 @@ export default function Creator(){
             });
             history.push("/home")
             console.log(input)
+        }catch(e){
+            alert(e)
+        }
     };
 
     function handleChange (e){
@@ -38,8 +42,9 @@ export default function Creator(){
     };
 
     function handleCountry(e){
-        e.preventDefault()
-        if(!input.countries.includes(e.target.value)){
+        e.preventDefault();
+        
+        if(e.target.value !== "non" && !input.countries.includes(e.target.value)){
             setInput({
                 ...input,
                 countries: [...input.countries, e.target.value]
@@ -74,7 +79,7 @@ export default function Creator(){
                 {errors.duration && <span> {errors.duration}</span>}
                 <br/>
             <label>Season: </label>
-                <select onChange={(e)=> handleChange(e)} value={input.season} name="season">
+                <select multiple={false} onChange={(e)=> handleChange(e)} value={input.season} name="season">
                     <option value="">Season</option>
                     <option value="autumn">Autumn</option>
                     <option value="winter">Winter</option>
@@ -84,8 +89,8 @@ export default function Creator(){
                 {errors.season && <span> {errors.season}</span>}
                 <br/>
             <label>Add countries for the activity</label>
-            <select multiple={true} value={input.countries} onChange={(e)=> handleCountry(e)} name="countries">
-                <option value="">Seleccionar</option>
+            <select multiple={false} value={input} onChange={(e)=> handleCountry(e)} name="countries">
+                <option value="non">Seleccionar</option>
                 {   countries?
                     countries.map(e=>{
                         return(
@@ -94,26 +99,27 @@ export default function Creator(){
                     }): <h4>loading....</h4>
                 }
             </select>
-            {errors.countries && <h4> {errors.countries}</h4>}
+            {errors.countries && <h4 className="error"> {errors.countries}</h4>}
            
 
             {
                 errors.name || errors.difficulty || errors.duration || errors.season || errors.countries?
                 <button disabled={true} type= "submit">Create</button> :
-                <button  type= "submit">Create</button>
+                <button  className="create" type= "submit">Create</button>
             }
 
             </form>
 
                 {input.countries.length > 0&& (
-                    <div>
-                <span>Selected countries</span>
-                <br/>
-                {input.countries.map(e=> <button onClick={handleDelete} name={e}>{e}</button>)}
-                <h4>Click on the country to delete</h4>
-                </div>
+                    <div className="selected-countries">
+                        <h4>Selected countries</h4>
+                        
+                        {input.countries.map(e=> <button key={e} onClick={handleDelete} name={e}>{e}</button>)}
+                        <h4>Click on the country to delete</h4>
+                    </div>
                 )}
-                
+                <br/>
+                <img src={gif} alt="act"/>
                 
         </div>
     )

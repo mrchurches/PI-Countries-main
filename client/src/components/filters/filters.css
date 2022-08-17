@@ -1,10 +1,28 @@
 .filters{
 display: flex;
 justify-content: center;
-background-color: rgb(97, 97, 97);
+background:  #434343;
 padding: 0.5rem;
 }
 
 .select{
     margin: 0.1rem;
+}
+
+.activities{
+    display: flex;
+    color: white;
+    margin: 1rem;
+    padding: 0.5rem;
+    border:rgb(49, 49, 49) solid;
+    position: relative;
+    left: -10rem;
+    top: 1rem;
+    box-shadow: black 0.5rem 0.5rem 2rem;
+}
+
+.data{
+    margin-right: 1rem;
+    padding-right: 0.7rem;
+    border-right: 0.1rem white solid;
 }

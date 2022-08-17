@@ -22,7 +22,7 @@ export default function rootReducer(state = initialState, action){
         case GET_ACTIVITY:
             return {
                 ...state,
-                filteredActivity : action.payload
+                filteredCountries : action.payload
             }
         case POST_ACTIVITY:
             return {

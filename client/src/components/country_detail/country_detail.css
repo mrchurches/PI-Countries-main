@@ -1,11 +1,16 @@
 .cont{
     font-family: 'Jost', sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 .cont h1{
     font-size: 8rem;
+    border-bottom: rgb(129, 129, 129) solid 1rem;
 }
 .detail{
     display: flex;
+    border: grey solid 1rem;
+    margin: 0.5rem;
     justify-content:space-around;
     font-size: 1.5rem;
 }
@@ -18,4 +23,15 @@
 .image img{
     height: 20rem;
     width: auto;
+}
+
+.activity{
+display : flex;
+justify-content: center;
+}
+
+.act-cont{
+    border: grey solid 0.5rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
 }

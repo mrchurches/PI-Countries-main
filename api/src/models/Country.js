@@ -4,16 +4,10 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('country', {
-    //id tiene que ser un codigo de 3 letras, por ahora no esta limitado
     id:{
       type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
-      // validate:{
-      //   threeLetters(value){
-          
-      //   }
-      // }
     },
     name: {
       type: DataTypes.STRING,

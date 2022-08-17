@@ -1,21 +1,20 @@
 let validator = (input) => {
 
     let errors = {};
-console.log(input)
-    if(input.name.length< 2 || input.name.length> 20){
-        errors.name = "error";
+    if(input.name.length< 2 || input.name.length> 30){
+        errors.name = "Name of the activity between 2 and 30 characters.";
     }
     if(input.difficulty<1 || input.difficulty>5){
-        errors.difficulty = "valor entre 1 y 5"
+        errors.difficulty = "Value between 1 and 5."
     }
     if(input.duration.length > 25 || input.duration.length<3){
-        errors.duration="min char 3 and max char 25"
+        errors.duration="Specifies the duration in 25 characters"
     }
     if(!input.season){
         errors.season = "Wrong season or empty"
     }
     if(!input.countries.length){
-        errors.countries = "Must have min 1 country"
+        errors.countries = "You must add at least 1 country"
     }
 
     return errors;

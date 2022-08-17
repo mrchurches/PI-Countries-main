@@ -1,18 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filter, getActivities, getAllCountries } from "../../redux/actions";
+import { clearFiltered, filter, getActivities, getAllCountries } from "../../redux/actions";
 import "./filters.css"
 
 export default function Filters(){
 let dispatch = useDispatch();
 let activities = useSelector(state => state.activities);
 let activity = useSelector(state => state.filteredActivity);
-let countries = useSelector(state => state.countries);
-const regions = ()=>{
-    let list = countries.map(e=> e.region);
-    let regions = list.filter((e,index)=> list.indexOf(e) === index)
-    return regions;
-}
+const regions = ["Africa", "Americas", "Asia","Oceania","Europe","Antarctic"];
 
 useEffect(()=>{
     dispatch(getActivities())
@@ -22,9 +17,11 @@ useEffect(()=>{
 function handleChange(e){
     
         if(e.target.name === "activity"){
-            if(e.target.value === "default") dispatch(getAllCountries());
+            if(e.target.value === "default") dispatch(clearFiltered());
             else{
-dispatch(getActivities(e.target.value))}
+                dispatch(getActivities(e.target.value))
+                console.log(activity)
+            }
         }
         else{
             if(e.target.value === "default") dispatch(getAllCountries());
@@ -44,7 +41,7 @@ dispatch(getActivities(e.target.value))}
             <div className="select">
                 <select name="continent" onChange={handleChange}>
                     <option value="default">Region</option>
-                    {regions().map(e=>{
+                    {regions.map(e=>{
                         return(
                         <option key={e} value={e} >{e}</option>
                         )
@@ -53,10 +50,10 @@ dispatch(getActivities(e.target.value))}
             </div>
             <div className="select">
                 <select name="activity" onChange={handleChange}>
-                    <option value="empty">Activities</option>
+                    <option value="default">Activities</option>
                     {activities?.map(e=>{
                         return(
-                            <option value={e.name} >{e.name}</option>
+                            <option value={e.name} key={e.name}>{e.name}</option>
                         )
                     })}
                 </select>
@@ -68,26 +65,6 @@ dispatch(getActivities(e.target.value))}
                     <option value="ASC">Min</option>
                 </select>
             </div>
-                {
-                    activity && activity.map(e=>{
-                        return(
-                            <div>
-                                <h4>{e.name}</h4>
-                                <h4>{e.difficulty}</h4>
-                                <h4>{e.duration}</h4>
-                                <h4>{e.season}</h4>
-                                {e.countries.map(e=>{
-                                    return(
-                                        <div>
-                                            <h4>{e.name}</h4>
-                                            
-                                        </div>
-                                    )
-                                })}
-                            </div>
-                        )
-                    })
-                }
         </div>
     )
 }

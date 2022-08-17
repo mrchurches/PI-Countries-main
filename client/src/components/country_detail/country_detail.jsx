@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import "./country_detail.css"
 
 
 export default function CountryDetail(){
     const [countries, setCountries] = useState("");
     let {id} = useParams();
-
+    const history= useHistory();
     useEffect(()=>{
         setTimeout(()=>{
             axios.get(`http://localhost:3001/api/countries/${id}`)
@@ -20,33 +20,39 @@ export default function CountryDetail(){
             {
             countries?
             <div className="cont">
-                           <h1>{countries.name}</h1>
+                           <div>
+                                <h1>{countries.name}</h1>
+                                
+                           </div>
                 <div className="detail">
-                    <div >
+                    <div>
                             <h3>Capital: {countries.capital}</h3>
                             <h3>{countries.region} ({countries.subregion})</h3>
                             <h3>Area: {countries.area} kmº2</h3>
                             <h3>Population: {countries.population}</h3>
-                            <h3>Activities: </h3>
+                    </div>
+                    <div className="image">
+                        <img src={countries.image} alt="country"/>
+                    </div>
+                </div>
+                <h3>Activities: </h3>
+                <div className="activity">
                             {
                                 countries.activities.map(e=>{
                                     return(
-                                            <div>
+                                            <div className="act-cont" key={e.name}>
                                                 <h4>{e.name}</h4>
-                                                <h4>{e.difficulty}</h4>
-                                                <h4>{e.duration}</h4>
-                                                <h4>{e.season}</h4>
+                                                <hr/>
+                                                <h4>Difficulty: {e.difficulty}</h4>
+                                                <h4>Duration of the activity: {e.duration}</h4>
+                                                <h4>Better season to do is {e.season}.</h4>
                                                 
                                             </div>
                                     )
                                 })
                             }
-                    </div>
-                    <div className="image">
-                        <img src={countries.image} alt="country"/>
-                    </div>
-
                 </div>
+                <button onClick={()=> history.goBack()}>Back</button>
             </div>
                 : 
                 <div>

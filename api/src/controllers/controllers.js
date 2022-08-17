@@ -2,8 +2,20 @@ const axios = require("axios")
 const {Country, Activity}= require("../db");
 const URL = "https://restcountries.com/v3/all";
 
+let getCountriesDb = async () => {
+    let countries = await Country.findAll();
+    if(countries.length<1){
+        await getCountriesApi();
+        countries = await Country.findAll();
+        return countries
+    }else{
+        return countries
+    }
+};
+
 let getCountriesApi = async () => {
-    let countries = await axios.get(URL);
+    try{
+        let countries = await axios.get(URL);
     
     countries = countries.data.map(e=>{
         return{
@@ -29,19 +41,11 @@ let getCountriesApi = async () => {
             area: e.area,
             population: e.population
         });
-    });
-};
-
-let getCountriesDb = async () => {
-    let countries = await Country.findAll();
-    if(!countries.length){
-        await getCountriesApi();
-        countries = await Country.findAll();
-        return countries
-    }else{
-        return countries
+    });}catch(e){
+        console.log(e)
     }
 };
+
 
 let getCountry = async (id) => {
     let country = await Country.findByPk(id,{

@@ -3,7 +3,7 @@
     justify-content: space-between;
     font-family: 'Jost', sans-serif;
     align-items: center;
-    background: rgb(80, 80, 80);
+    background: linear-gradient(to left, #000000, #434343);
 }
 .first{
     margin: 5px;

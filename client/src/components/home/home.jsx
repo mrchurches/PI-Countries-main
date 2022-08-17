@@ -11,12 +11,10 @@ export default function Home(){
     let countries = useSelector((state)=> state.countries);
     let dispatch = useDispatch();
     let [currentPage, setCurrentPage] = useState(1);
-    let [countriesPerPage, setCountriesPerPage] = useState(9);
+    let [countriesPerPage, setCountriesPerPage] = useState(10);
     const indexOfLastCountry = currentPage * countriesPerPage;
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
-    // const indexOfLastCountry = currentPage * (currentPage===1?countriesPerPage-1:countriesPerPage);
-    // const indexOfFirstCountry = indexOfLastCountry - (currentPage===1?countriesPerPage-1:countriesPerPage);
-    const currentCountries = countries.slice(indexOfFirstCountry, indexOfLastCountry);
+    const currentCountries = filteredCountries.length? filteredCountries.slice(indexOfFirstCountry, indexOfLastCountry): countries.slice(indexOfFirstCountry, indexOfLastCountry);
     const [show, setShow] = useState(false);
 
     const paginado = (number) => {
@@ -32,9 +30,9 @@ export default function Home(){
         <div className="Home">
             <button className="show" onClick={()=> setShow(show => !show)}>{show?"Hide filters":"Show filters"}</button>
             {show&&<Filters />}
-            <Pagination currentPage={currentPage} countriesPerPage={countriesPerPage} countries={countries.length} paginado={paginado}/>
+            <Pagination currentPage={currentPage} countriesPerPage={countriesPerPage} countries={filteredCountries.length? filteredCountries.length : countries.length} paginado={paginado}/>
             <Cards 
-                    allCountries = {filteredCountries.length?filteredCountries:currentCountries}
+                    allCountries = {currentCountries}
                 />
         </div>
     )
