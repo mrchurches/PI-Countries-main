@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 
 export default function Cards({allCountries}){
-const [show, setShow] = useState(false);
+const [show, setShow] = useState(true);
 useEffect(()=>{
     setTimeout(()=>setShow(show=>show=true),2000)
 },[])

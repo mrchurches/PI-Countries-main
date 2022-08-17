@@ -17,6 +17,8 @@ let getCountriesDb = async () => {
     }
 };
 
+//------------------------------------------------------------------//
+
 let getCountriesApi = async () => {
     try{
         let countries = await axios.get(URL);
@@ -50,6 +52,8 @@ let getCountriesApi = async () => {
     }
 };
 
+//------------------------------------------------------------------//
+
 
 let getCountry = async (id) => {
     let country = await Country.findByPk(id,{
@@ -59,6 +63,9 @@ let getCountry = async (id) => {
         return country
     }
 }
+
+//------------------------------------------------------------------//
+
 
 let postActivity = async (name, difficulty, duration, season, countries) => {
 try{    
@@ -70,6 +77,9 @@ try{
     console.log(e)
 }
 }
+
+//------------------------------------------------------------------//
+
 
 let modAct = async (id, countries)=>{
 try{
@@ -89,16 +99,9 @@ return act;
 }
 }
 
-// let delFromAct = async(id,countries)=>{
-// try{
-//     let act = await Activity.findByPk(id,{
-//         include: [Country] 
-//     });
+//------------------------------------------------------------------//
+//------------------------------------------------------------------//
 
-// }catch(e){
-//     console.log(e)
-// }
-// }
 
 let nameAsc = async () => {
 try{
@@ -112,6 +115,9 @@ try{
 }
 }
 
+//------------------------------------------------------------------//
+
+
 let nameDesc = async () => {
     try{
         let desc = await Country.findAll({
@@ -122,7 +128,9 @@ let nameDesc = async () => {
     }catch(e){
         console.log(e)
     }
-    }
+}
+
+//------------------------------------------------------------------//
 
 let regions = async (continent) => {
     try{
@@ -139,6 +147,8 @@ let regions = async (continent) => {
     }
 }
 
+//------------------------------------------------------------------//
+
 let activities = async (name) => {
     try{
         let activities;
@@ -149,7 +159,7 @@ let activities = async (name) => {
             })
         }else{
             activities = await Activity.findAll({
-            include: [Country]
+                include: [Country]
             });
         }
     return activities;
@@ -158,18 +168,32 @@ let activities = async (name) => {
 }
 }
 
+//------------------------------------------------------------------//
+
 let population = async (data) => {
     try{
-            let countries = await Country.findAll({
-                order: [["population", data]],
+        let countries = await Country.findAll({
+            order: [["population", data]],
                 include: [Activity]
             });
 
             return countries;
-    }catch(e){
+        }catch(e){
         console.log(e)
 }
 }
+
+// let delFromAct = async(id,countries)=>{
+// try{
+//     let act = await Activity.findByPk(id,{
+//         include: [Country] 
+//     });
+
+// }catch(e){
+//     console.log(e)
+// }
+// }
+
 
 module.exports = {
     getCountriesDb,

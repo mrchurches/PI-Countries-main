@@ -32,15 +32,15 @@ function handleChange(e){
     return(
         <div className="filters">
             <div className="select">
-                <select name="orden" onChange={handleChange}>
-                    <option value="default">select</option>
-                    <option value="az">A-Z</option>
-                    <option value="za">Z-A</option>
+                <select name="orden" onChange={handleChange} key="orden">
+                    <option value="default" key={"default"}>select</option>
+                    <option value="az" key={"az"}>A-Z</option>
+                    <option value="za" key={"za"}>Z-A</option>
                 </select>    
             </div>
             <div className="select">
-                <select name="continent" onChange={handleChange}>
-                    <option value="default">Region</option>
+                <select name="continent" onChange={handleChange} key={"continent"}>
+                    <option value="default" key={"default"}>Region</option>
                     {regions.map(e=>{
                         return(
                         <option key={e} value={e} >{e}</option>
@@ -49,8 +49,8 @@ function handleChange(e){
                 </select>
             </div>
             <div className="select">
-                <select name="activity" onChange={handleChange}>
-                    <option value="default">Activities</option>
+                <select name="activity" onChange={handleChange} key="activity">
+                    <option value="default" key={"default"}>Activities</option>
                     {activities?.map(e=>{
                         return(
                             <option value={e.name} key={e.name}>{e.name}</option>
@@ -59,10 +59,10 @@ function handleChange(e){
                 </select>
             </div>
             <div className="select">
-                <select name="population" onChange={handleChange}>
-                    <option value="default">Population</option>
-                    <option value="DESC">Max</option>
-                    <option value="ASC">Min</option>
+                <select name="population" onChange={handleChange} key="population">
+                    <option value="default" key={"default"}>Population</option>
+                    <option value="DESC" key={"desc"}>Max</option>
+                    <option value="ASC" key={"asc"}>Min</option>
                 </select>
             </div>
         </div>

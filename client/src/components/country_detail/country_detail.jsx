@@ -13,7 +13,7 @@ export default function CountryDetail(){
             axios.get(`http://localhost:3001/api/countries/${id}`)
             .then((res)=>setCountries(res.data))
         },1000)
-    },[id])
+    },[id, history])
 
     return(
             <div>
