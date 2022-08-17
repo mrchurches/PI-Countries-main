@@ -4,7 +4,7 @@ let initialState = {
     countries: [],
     filteredCountries: [],
     activities: [],
-    filteredActivity : []
+    // filteredActivity : []
 }
 
 export default function rootReducer(state = initialState, action){

@@ -3,21 +3,24 @@ const {Country, Activity}= require("../db");
 const URL = "https://restcountries.com/v3/all";
 
 let getCountriesDb = async () => {
-    let countries = await Country.findAll();
-    if(countries.length<1){
+    try{
+        let countries = await Country.findAll();
+        if(!countries.length){
         await getCountriesApi();
         countries = await Country.findAll();
         return countries
-    }else{
+        }else{
         return countries
+        }
+    }catch(e){
+        console.log(e)
     }
 };
 
 let getCountriesApi = async () => {
     try{
         let countries = await axios.get(URL);
-    
-    countries = countries.data.map(e=>{
+        countries = countries.data.map(e=>{
         return{
             id: e.cca3,
             name: e.name.common,
@@ -27,21 +30,22 @@ let getCountriesApi = async () => {
             subregion: e.subregion? e.subregion : "no data",
             area: e.area,
             population: e.population
-        }
-    });
+            }
+            });
     
-    countries.forEach(async (e)=>{
-        await Country.create({
-            id: e.id,
-            name: e.name,
-            image: e.image,
-            region: e.region,
-            capital: e.capital,
-            subregion: e.subregion,
-            area: e.area,
-            population: e.population
+        countries.forEach(async(e)=>{
+            await Country.create({
+                id: e.id,
+                name: e.name,
+                image: e.image,
+                region: e.region,
+                capital: e.capital,
+                subregion: e.subregion,
+                area: e.area,
+                population: e.population
+            });
         });
-    });}catch(e){
+    }catch(e){
         console.log(e)
     }
 };
@@ -49,8 +53,7 @@ let getCountriesApi = async () => {
 
 let getCountry = async (id) => {
     let country = await Country.findByPk(id,{
-        include: [Activity] 
-    })
+        include: [Activity] })
     if(!country) return "No country";
     else{
         return country
@@ -58,18 +61,14 @@ let getCountry = async (id) => {
 }
 
 let postActivity = async (name, difficulty, duration, season, countries) => {
-    let countriesFind = await Country.findAll({
-        where: {
-            name: countries
-        }
-    });
-    if(!countriesFind.length) throw new Error("no country find");
-    let newAct = await Activity.create({
-        name, difficulty, duration, season
-    });
-    console.log(countriesFind)
-    await newAct.addCountry(countriesFind);
-    return newAct
+try{    
+    let countriesFind = await Country.findAll({where: {name: countries}});
+    if(!countriesFind.length) return "no country";
+    let newAct = await Activity.create({ name, difficulty, duration, season });
+    return await newAct.addCountry(countriesFind);
+}catch(e){
+    console.log(e)
+}
 }
 
 let modAct = async (id, countries)=>{

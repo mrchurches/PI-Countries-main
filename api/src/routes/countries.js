@@ -19,9 +19,10 @@ router.get("/:id",async (req,res,next)=>{
 router.get("/",async (req,res,next)=>{
     try{
         let {name} = req.query;
-        let countries = await getCountriesDb();
-        if(!name) res.json(countries);
-        else{
+        if(!name){
+            let countries = await getCountriesDb();
+            res.json(countries);
+        }else{
             let countriesQuery = await Country.findAll({
             where: {
                 name: {

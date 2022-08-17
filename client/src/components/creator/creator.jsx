@@ -19,22 +19,7 @@ export default function Creator(){
         countries: []
     });
 
-    function handleSubmit (e){
-        try{    e.preventDefault()
-            dispatch(postActivity(input))
-            setInput({
-                name: "",
-                difficulty: "",
-                duration: "",
-                season: "",
-                countries: []
-            });
-            history.push("/home")
-            console.log(input)
-        }catch(e){
-            alert(e)
-        }
-    };
+
 
     function handleChange (e){
         setInput({...input , [e.target.name]: e.target.value})
@@ -60,6 +45,34 @@ export default function Creator(){
         })
     }
 
+    function handleSubmit (e){
+        try{
+            e.preventDefault()
+            if(!input.name && !input.difficulty && !input.duration && !input.season && !input.countries.length){
+                alert("Error")
+            }else{
+                setErrors(validator(input));
+                console.log(errors);
+                if(errors.name || errors.difficulty || errors.duration || errors.season || errors.countries){
+                    alert("error")
+                }else{
+                    dispatch(postActivity(input));
+                    setInput({
+                        name: "",
+                        difficulty: "",
+                        duration: "",
+                        season: "",
+                        countries: []
+                    });
+                history.push("/home")
+                }
+            }
+        }catch(e){
+            alert(e)
+        }
+    };
+
+    
     return(
         <div className="creator">
             <h1>Create a new activity</h1>
@@ -114,7 +127,7 @@ export default function Creator(){
                     <div className="selected-countries">
                         <h4>Selected countries</h4>
                         
-                        {input.countries.map(e=> <button key={e} onClick={handleDelete} name={e}>{e}</button>)}
+                        {input.countries.map(e=> <button key={e} onClick={(e)=>handleDelete(e)} name={e}>{e}</button>)}
                         <h4>Click on the country to delete</h4>
                     </div>
                 )}

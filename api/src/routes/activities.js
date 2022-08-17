@@ -9,7 +9,7 @@ let { name, difficulty, duration, season, countries} = req.body;
     }
     try{
         let act = await postActivity(name, difficulty, duration, season, countries);
-        res.json(act)
+        res.status(200).json(act)
     }catch(e){  
         next(e)
     }

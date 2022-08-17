@@ -24,17 +24,6 @@ export function getCountry(input){
     return function(dispatch){
         axios.get(`http://localhost:3001/api/countries?name=${input}`)
         .then(res=>{
-            // if(res.data.length){
-            // dispatch({
-            //     type: GET_COUNTRY,
-            //     payload: res.data
-            // })
-            // }else{
-            //     dispatch({
-            //         type: GET_COUNTRY,import { Dispatch } from "react";
-            //         payload: {id:"error", name:"No country found", image: "https://img2.freepng.es/20180822/rg/kisspng-portable-network-graphics-computer-icons-error-ima-soylent-red-error-7-icon-free-soylent-red-error-5b7d3124044210.2536301815349312360175.jpg"}
-            //     })
-            // }
             dispatch({
                     type: GET_COUNTRY,
                     payload: res.data
@@ -55,6 +44,7 @@ export function getActivities(name){
                     payload: response.data[0].countries
                 })
             })
+            .catch(e=>console.log(e))
         }
     }
     return function(dispatch){
@@ -65,6 +55,7 @@ export function getActivities(name){
                 payload: response.data
             })
         })
+        .catch(e=>console.log(e))
     }
 }
 
@@ -80,11 +71,12 @@ export function clearFiltered(){
 export function postActivity({name, difficulty, duration, season, countries}){
     return function(dispatch){
         axios.post("http://localhost:3001/api/activities",{name, difficulty, duration, season, countries})
-        .then((res)=>{dispatch({
+        .then((res)=>{
+            dispatch({
             type: POST_ACTIVITY,
             payload: res.data
         })
-    })
+        })
         .catch(e=>console.log(e))
     }
 }
@@ -123,6 +115,7 @@ if(input === "Americas" || input === "Europe" || input === "Asia" ||input === "A
                 payload: response.data
             })
         })
+        .catch(e=>console.log(e))
     }
     }
 if(input=== "ASC" || input === "DESC"){
@@ -134,6 +127,7 @@ if(input=== "ASC" || input === "DESC"){
                 payload: response.data
             })
         })
+        .catch(e=>console.log(e))
     }
 }
 }
