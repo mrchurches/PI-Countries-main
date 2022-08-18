@@ -1,9 +1,10 @@
-import { GET_ACTIVITIES, GET_ACTIVITY, GET_ALL_COUNTRIES, GET_COUNTRY, POST_ACTIVITY } from "./actions.js";
+import { GET_ACTIVITIES, GET_ACTIVITY, GET_ALL_COUNTRIES, GET_COUNTRY, POST_ACTIVITY, SET_CURRENT_PAGE } from "./actions.js";
 
 let initialState = {
     countries: [],
     filteredCountries: [],
     activities: [],
+    currentPage: 1
     // filteredActivity : []
 }
 
@@ -22,7 +23,7 @@ export default function rootReducer(state = initialState, action){
         case GET_ACTIVITY:
             return {
                 ...state,
-                filteredCountries : action.payload
+                filteredCountries : action.payload,
             }
         case POST_ACTIVITY:
             return {
@@ -34,6 +35,12 @@ export default function rootReducer(state = initialState, action){
                 ...state,
                 filteredCountries: action.payload
             }
+        case SET_CURRENT_PAGE:
+            return{
+                ...state,
+                currentPage: action.payload
+            }
+        
         default:
             return state
     }

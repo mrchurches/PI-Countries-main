@@ -5,6 +5,7 @@ export const POST_ACTIVITY = "POST_ACTIVITY";
 export const CLEAR_FILTERED = "CLEAR_FILTERED";
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const GET_ACTIVITY = "GET_ACTIVITY";
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 
 export function getAllCountries(){
     return function(dispatch){
@@ -130,4 +131,13 @@ if(input=== "ASC" || input === "DESC"){
         .catch(e=>console.log(e))
     }
 }
+}
+
+export function setCurrentPage(number){
+    return function(dispatch){
+        dispatch({
+            type: SET_CURRENT_PAGE,
+            payload: number
+        })
+    }
 }

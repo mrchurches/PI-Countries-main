@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import { useEffect, useState } from "react";
-import { getAllCountries} from "../../redux/actions.js";
+import { getAllCountries, setCurrentPage} from "../../redux/actions.js";
 import Cards from "../cards/cards.jsx";
 import Filters from "../filters/filters.jsx";
 import Pagination from "../pagination/pagination.jsx"
@@ -10,7 +10,7 @@ export default function Home(){
     let filteredCountries = useSelector((state)=> state.filteredCountries);
     let countries = useSelector((state)=> state.countries);
     let dispatch = useDispatch();
-    let [currentPage, setCurrentPage] = useState(1);
+    let currentPage = useSelector((state)=> state.currentPage);
     let [countriesPerPage, setCountriesPerPage] = useState(10);
     const indexOfLastCountry = currentPage * countriesPerPage;
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
@@ -18,7 +18,7 @@ export default function Home(){
     const [show, setShow] = useState(false);
 
     const paginado = (number) => {
-        setCurrentPage(number)
+        dispatch(setCurrentPage(number))
     }
 
     useEffect(()=>{

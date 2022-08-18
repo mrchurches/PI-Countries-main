@@ -2,18 +2,18 @@ import "./card.css"
 import { Link } from "react-router-dom";
 
 export default function Card({id, name, region, image}){
-let changer = true;
-name = name.split("");
+// let changer = true;
+// name = name.split("");
 
-name.forEach(e=>{
+// name.forEach(e=>{
 
-    if(e===" ") changer=true;
-    if(changer=== true){
-        e.toUpperCase();
-        changer=false;
-    }
-});
-name=name.join("")
+//     if(e===" ") changer=true;
+//     if(changer=== true){
+//         e.toUpperCase();
+//         changer=false;
+//     }
+// });
+// name=name.join("")
 
     return(
         <div className="card">
