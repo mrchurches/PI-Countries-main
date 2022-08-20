@@ -35,3 +35,16 @@ justify-content: center;
     margin: 0.5rem;
     padding: 0.5rem;
 }
+
+@media (max-height: 850px){
+    .cont h1{
+        font-size: 4rem;
+    }
+    .detail{
+        flex-direction: column;
+    }
+    .image img{
+        height: 8rem;
+        width: auto;
+    }
+}
