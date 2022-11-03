@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useDispatch} from "react-redux";
 import { clearFiltered, getCountry, setCurrentPage } from "../../redux/actions";
-import "./search_bar.css"
+import style from "./search_bar.module.css"
 
 export default function SearchBar(){
     let [name, setName] = useState("");
@@ -28,14 +28,14 @@ export default function SearchBar(){
     }
 
     return(
-        <div className="search">
-             <div className="form">
+        <div className={style.search}>
+             <div className={style.form}>
                 <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="Search a country..." value={name} onChange={handleChange}/>
                 <button type="submit" >Search</button>
                 </form>
              </div>
-             <div className="clear">
+             <div className={style.clear}>
                 <button onClick={handleClick}>Clear</button>
              </div>
         </div>

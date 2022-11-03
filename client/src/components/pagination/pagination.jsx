@@ -1,5 +1,5 @@
 import React from "react";
-import "./pagination.css"
+import style from "./pagination.module.css"
 
 export default function Pagination({countriesPerPage, countries, paginado, currentPage}){
     const pageNums = [];
@@ -16,16 +16,16 @@ export default function Pagination({countriesPerPage, countries, paginado, curre
 
     return(
         <nav>
-            <ul className="pages">
-                <button onClick={previous} disabled={currentPage===pageNums[0]?true:false}>{"<"}</button>
+            <ul className={style.pages}>
+                <button className={style.arrow} onClick={previous} disabled={currentPage===pageNums[0]?true:false}>{"<"}</button>
                 {
                     pageNums && pageNums.map(e=>{return(
-                        <li key={e} className={currentPage === e ? "actual" : "non"}>
+                        <li key={e} className={currentPage === e ? style.actual : style.non}>
                             <span onClick={()=> paginado(e)}>{e}</span>
                         </li>
                     )})
                 }
-                <button onClick={next} disabled={currentPage===pageNums.length?true:false}>{">"}</button>
+                <button className={style.arrow} onClick={next} disabled={currentPage===pageNums.length?true:false}>{">"}</button>
             </ul>
         </nav>
     )

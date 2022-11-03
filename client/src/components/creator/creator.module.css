@@ -1,0 +1,104 @@
+.creator {
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+  height: 100vh;
+  font-family: "Jost", sans-serif;
+  color: #dce1de;
+}
+.creator h1 {
+  text-shadow: 0.15rem 0.1rem black;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputs{
+  display: flex;
+  width: 50%;
+  
+  justify-content: space-between;
+}
+
+.creator h5{
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.creator p {
+  font-size: 1rem;
+  color: red;
+  text-shadow: 0.08rem 0.08rem black;
+}
+
+.creator label {
+  font-size: 1.2rem;
+  margin: 0.5rem;
+}
+.creator input {
+  margin:0.7rem;
+  width: 7rem;
+  height: 1rem;
+  border-radius: 0.3rem;
+  background-color: rgba(0, 255, 255, 0.158);
+  color: white;
+}
+.creator select {
+  height: 2rem;
+  margin:0.7rem;
+  border-radius: 0.3rem;
+  background-color: rgba(0, 255, 255, 0.158);
+  color: white;
+}
+.creator option{
+  color: black;
+}
+
+.selected_countries h4 {
+  font-size: 1rem;
+}
+
+.create {
+
+  padding: 0.5rem;
+  width: 5rem;
+}
+
+.error {
+  color: red;
+  text-shadow: 0.08rem 0.08rem black;
+}
+
+.gif{
+  padding-top: 5rem;
+}
+
+.gif img{
+  border-radius: 5rem;
+}
+
+@media(max-width: 650px) {
+  .creator{
+    flex-direction: column;
+    padding-top: 0;
+    justify-content: flex-start;
+  }
+
+  .creator h1{
+    font-size: 1rem;
+  }
+
+  .gif {
+    padding-top: 1rem;
+  }
+
+  .gif img{
+    width: 10rem;
+  }
+}
