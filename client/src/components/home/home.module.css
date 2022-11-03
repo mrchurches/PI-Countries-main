@@ -10,7 +10,6 @@ display: flex;
 
 .cont_filters{
     width: 20rem;
-    height: 100vh;
 }
 
 @media (max-width: 650px){

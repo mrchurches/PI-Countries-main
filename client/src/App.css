@@ -4,10 +4,12 @@
   margin:0px;
   padding:0px;
   border:0px;
+  min-height: 100vh;
 }
 body{
   background-color: #1F2421;
   width:100vw;
+  position: relative;
 }
 
 h1,h2,h3,h4,h5,p{
