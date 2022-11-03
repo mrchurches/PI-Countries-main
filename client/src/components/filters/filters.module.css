@@ -1,12 +1,17 @@
 .filters{
 display: flex;
+flex-direction: column;
 justify-content: center;
-background:  #434343;
-padding: 0.5rem;
+padding: 1rem;
+color: #DCE1DE;
 }
 
 .select{
     margin: 0.1rem;
+}
+
+.select select{
+    width: 8rem;
 }
 
 .activities{
@@ -25,4 +30,15 @@ padding: 0.5rem;
     margin-right: 1rem;
     padding-right: 0.7rem;
     border-right: 0.1rem white solid;
+}
+
+@media (max-width: 650px){
+    .filters{
+        flex-direction: row;
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 1rem;
+        justify-content: center;
+        margin: 0;
+    }
 }

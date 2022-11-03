@@ -1,0 +1,36 @@
+.pages {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.pages li {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.pages li:hover {
+  background-color: rgb(148, 148, 148);
+}
+
+.actual {
+  background-color: black;
+  color: white;
+}
+.non {
+  background-color: #216869;
+}
+
+.arrow {
+    background-color: grey;
+}
+
+@media (max-width: 650px) {
+  .pages {
+    margin: 0;
+    font-size: 1rem;
+  }
+}

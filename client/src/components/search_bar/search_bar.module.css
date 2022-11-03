@@ -1,0 +1,26 @@
+.search{
+    display: flex;
+    align-items: center;
+    margin: 0.2rem;
+    font-size: 1rem;
+}
+
+.form{
+    display: flex;
+    margin: 0.2rem;
+}
+.form input{
+    background-color: #1f2421;
+    color: white;
+    height: 1rem;
+}
+.form button{
+    background-color: #9CC5A1;
+    height: 1.5rem;
+}
+
+.clear button{
+    border-radius: 0.5rem;
+background-color: #9CC5A1;
+color: black;
+}

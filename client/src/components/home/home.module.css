@@ -1,0 +1,24 @@
+.home{
+    background: #1F2421;
+font-family: 'Jost', sans-serif;
+display: flex;
+}
+
+.show{
+
+}
+
+.cont_filters{
+    width: 20rem;
+    height: 100vh;
+}
+
+@media (max-width: 650px){
+.home{
+    flex-direction: column;
+}
+
+.cont_filters{
+    height: auto;
+}
+}

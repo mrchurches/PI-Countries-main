@@ -1,0 +1,44 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 1rem;
+
+    transition: all 0.5s;
+    background: #9cc5a18c;
+    backdrop-filter: blur( 11.5px );
+    -webkit-backdrop-filter: blur( 11.5px );
+    border-radius: 10px;
+}
+.link{
+    text-decoration: none;
+}
+.card h3{
+    color: black;
+}
+.card h3:hover{
+    color: white;
+    transition: all 1s;
+
+}
+
+.card h4{
+    color: black;
+}
+.card img{
+    justify-items: center;
+    width: 15rem;
+    height: 11rem;
+    object-fit: cover;
+    box-shadow: 0.5rem 0.5rem 0.8rem black;
+    border-radius: 1rem;
+    
+}
+.card:hover{
+    transform: scale(0.95);
+    box-shadow: 0.5rem 0.5rem 0.8rem black;
+}
