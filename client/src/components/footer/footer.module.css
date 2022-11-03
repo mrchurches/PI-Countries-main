@@ -3,6 +3,9 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
 }
 
 .container a{
@@ -11,5 +14,7 @@
 }
 
 .social{
+    position: relative;
+    right: 10px;
     padding: 0.5rem;
 }
