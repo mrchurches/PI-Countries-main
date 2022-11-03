@@ -11,7 +11,7 @@ export default function CountryDetail() {
   useEffect(() => {
     setTimeout(() => {
       axios
-        .get(`http://localhost:3001/api/countries/${id}`)
+        .get(`https://world-back.up.railway.app/api/countries/${id}`)
         .then((res) => setCountries(res.data));
     }, 1000);
   }, [id]);

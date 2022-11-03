@@ -7,9 +7,11 @@ export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const GET_ACTIVITY = "GET_ACTIVITY";
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 
+let URL = "https://world-back.up.railway.app/"
+
 export function getAllCountries(){
     return function(dispatch){
-        axios.get("http://localhost:3001/api/countries")
+        axios.get(`${URL}api/countries`)
         .then((res)=>{
             dispatch({
                 type: GET_ALL_COUNTRIES,
@@ -23,7 +25,7 @@ export function getAllCountries(){
 
 export function getCountry(input){
     return function(dispatch){
-        axios.get(`http://localhost:3001/api/countries?name=${input}`)
+        axios.get(`${URL}api/countries?name=${input}`)
         .then(res=>{
             dispatch({
                     type: GET_COUNTRY,
@@ -38,7 +40,7 @@ export function getCountry(input){
 export function getActivities(name){
     if(name){
         return function(dispatch){
-            axios.get(`http://localhost:3001/api/filters/activities?name=${name}`)
+            axios.get(`${URL}api/filters/activities?name=${name}`)
             .then(response=>{
                 dispatch({
                     type: GET_ACTIVITY,
@@ -49,7 +51,7 @@ export function getActivities(name){
         }
     }
     return function(dispatch){
-        axios.get("http://localhost:3001/api/filters/activities")
+        axios.get(`${URL}api/filters/activities`)
         .then(response=>{
             dispatch({
                 type: GET_ACTIVITIES,
@@ -71,7 +73,7 @@ export function clearFiltered(){
 
 export function postActivity({name, difficulty, duration, season, countries}){
     return function(dispatch){
-        axios.post("http://localhost:3001/api/activities",{name, difficulty, duration, season, countries})
+        axios.post(`${URL}api/activities`,{name, difficulty, duration, season, countries})
         .then((res)=>{
             dispatch({
             type: POST_ACTIVITY,
@@ -85,7 +87,7 @@ export function postActivity({name, difficulty, duration, season, countries}){
 export function filter(input){
 if(input === "az"){
     return function(dispatch){
-        axios.get("http://localhost:3001/api/filters/asc")
+        axios.get(`${URL}api/filters/asc`)
     .then(response=>{
         dispatch({
             type: GET_ALL_COUNTRIES,
@@ -97,7 +99,7 @@ if(input === "az"){
 }
 if(input === "za"){
     return function(dispatch){
-        axios.get("http://localhost:3001/api/filters/desc")
+        axios.get(`${URL}api/filters/desc`)
     .then(response=>{
         dispatch({
             type: GET_ALL_COUNTRIES,
@@ -109,7 +111,7 @@ if(input === "za"){
     }
 if(input === "Americas" || input === "Europe" || input === "Asia" ||input === "Africa" || input === "Oceania" || input === "Antarctic"){
     return function(dispatch){
-        axios.get(`http://localhost:3001/api/filters/regions?continent=${input}`)
+        axios.get(`${URL}api/filters/regions?continent=${input}`)
         .then(response=>{
             dispatch({
                 type: GET_ALL_COUNTRIES,
@@ -121,7 +123,7 @@ if(input === "Americas" || input === "Europe" || input === "Asia" ||input === "A
     }
 if(input=== "ASC" || input === "DESC"){
     return function(dispatch){
-        axios.get(`http://localhost:3001/api/filters/population?data=${input}`)
+        axios.get(`${URL}api/filters/population?data=${input}`)
         .then(response=>{
             dispatch({
                 type: GET_ALL_COUNTRIES,
