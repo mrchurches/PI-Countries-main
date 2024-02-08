@@ -3,10 +3,10 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  PGUSER, PGPASSWORD, PGHOST, PGPORT, PGDATABASE
+  REACT_APP_PGUSER, REACT_APP_PGPASSWORD, REACT_APP_PGHOST, REACT_APP_PGPORT, REACT_APP_PGDATABASE
 } = process.env;
-
-const sequelize = new Sequelize(`postgresql://postgres:${PGPASSWORD}@containers-us-west-32.railway.app:5820/railway`, {
+console.log()
+const sequelize = new Sequelize(`postgres://${REACT_APP_PGUSER}:${REACT_APP_PGPASSWORD}@${REACT_APP_PGHOST}:${REACT_APP_PGPORT}/${REACT_APP_PGDATABASE}`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });

@@ -34,19 +34,9 @@ let getCountriesApi = async () => {
             population: e.population
             }
             });
-    
-        countries.forEach(async(e)=>{
-            await Country.create({
-                id: e.id,
-                name: e.name,
-                image: e.image,
-                region: e.region,
-                capital: e.capital,
-                subregion: e.subregion,
-                area: e.area,
-                population: e.population
-            });
-        });
+        countries.forEach(e=>{
+            Country.create(e)
+        })
     }catch(e){
         console.log(e)
     }
