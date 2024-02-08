@@ -7,8 +7,7 @@ export const GET_ACTIVITIES = "GET_ACTIVITIES";
 export const GET_ACTIVITY = "GET_ACTIVITY";
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 
-let URL = "https://world-back.up.railway.app/"
-
+let URL = process.env.REACT_APP_API_URL
 export function getAllCountries(){
     return function(dispatch){
         axios.get(`${URL}api/countries`)
