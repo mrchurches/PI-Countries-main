@@ -6,8 +6,7 @@
   <img height="200" src="./globe.gif" />
 </p>
 
-##Link al deploy
-https://countries-page-plum.vercel.app/
+## [Link al deploy](https://countries-page-plum.vercel.app/)
 
 ## Objetivos del Proyecto
 
