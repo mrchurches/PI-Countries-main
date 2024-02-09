@@ -17,7 +17,7 @@ useEffect(()=>{
                 <h4>Loading...</h4>
             </div>)
             }
-            {show&&allCountries.map(e=>{
+            {show&&allCountries?.map(e=>{
                     return(
                         <Card 
                         key={e.id}
