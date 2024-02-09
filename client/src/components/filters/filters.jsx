@@ -64,7 +64,7 @@ function handleChange(e){
                 <div className={style.select}>
                     <select name="activity" onChange={handleChange} key="activity">
                         <option value="default" key={"default"}>Activities</option>
-                        {activities?.map(e=>{
+                        {activities.length>0 && activities?.map(e=>{
                             return(
                                 <option value={e.name} key={e.name}>{e.name}</option>
                             )
